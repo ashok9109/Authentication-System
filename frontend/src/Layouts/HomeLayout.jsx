@@ -1,17 +1,22 @@
 import React from 'react'
 import { Outlet } from 'react-router';
+import NavLink from '../components/Navigation/NavLink';
 
 const HomeLayout = () => {
   return (
     <>
-    <section>
-    <aside>
-    </aside>
+      <section>
+        {/* Nav link */}
+        <aside>
+          <NavLink />
+        </aside>
 
-    <div>
-      <Outlet/>
-    </div>
-    </section>
+
+        {/* This is right page */}
+        <div>
+          <Outlet />
+        </div>
+      </section>
     </>
   )
 }

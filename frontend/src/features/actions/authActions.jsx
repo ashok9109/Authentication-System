@@ -30,3 +30,17 @@ export const loginApi = (data) => async (dispatch) => {
         throw error.response?.data || error;
     }
 };
+
+// =======================
+// Logout Api
+// ====================
+
+export const logoutApi = () => async(dispatch)=>{
+
+    try {
+        const response = await axiosintance.get("/api/")
+        
+    } catch (error) {
+        throw 
+    }
+}

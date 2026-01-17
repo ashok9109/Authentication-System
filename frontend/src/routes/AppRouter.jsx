@@ -10,29 +10,29 @@ import MyInternship from '../pages/MyInternship'
 const AppRouter = () => {
     const router = createBrowserRouter([
         {
-            path: '/',
+            path: "/",
             element: <AuthLayout />
         },
         {
-            path: '/home',
+            path: "/home",
             element: <ProtectedRoute />,
             children: [
                 {
-                    path: '',
+                    path: "",
                     element: <HomeLayout />,
                     children: [
-                        // {
-                        //     path: '',
-                        //     element: <Dashboard/>
-                        // },
-                        // {
-                        //     path:'/mycoures',
-                        //     element:<MyCourses/>
-                        // },
-                        // {
-                        //     path:'/myinternship',
-                        //     element:<MyInternship/>
-                        // }
+                        {
+                            path: "",
+                            element: <Dashboard/>
+                        },
+                        {
+                            path:'my-courses',
+                            element:<MyCourses/>
+                        },
+                        {
+                            path:'my-internship',
+                            element:<MyInternship/>
+                        }
                     ]
                 }
             ]

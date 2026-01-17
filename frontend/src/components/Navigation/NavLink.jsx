@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 
 const navlink = [
   {label:"Dashboard", icon:Home, to:"/home"},
-  {label:"My Courses", icons:BookCheck, to:"/home/courses"},
-  {label:"My Internship", icons:Album, to:"/home/internship"}
+  {label:"My Courses", icons:BookCheck, to:"/home/my-courses"},
+  {label:"My Internship", icons:Album, to:"/home/my-internship"}
 ]
 
 
@@ -21,20 +21,25 @@ const NavLink = () => {
   return (
     <>
     <section>
+      
       <div>
-        {navlink.map(({label, icon:Icon, to}, Idx)=>{
+        {navlink.map(({label, icon: Icon, to}, Idx)=>{
           return(
             <RouterNavLink
             key={label}
             to={to}
             >
               <div className='flex' >
-                <Icon />
+                {/* <Icon /> */}
               <span>{label}</span>
               </div>
             </RouterNavLink>
           )
         })}
+      </div>
+
+      <div>
+        <button className='text-red-500' >Logout</button>
       </div>
     </section>
     </>
