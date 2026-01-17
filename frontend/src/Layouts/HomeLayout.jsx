@@ -1,8 +1,18 @@
 import React from 'react'
+import { Outlet } from 'react-router';
 
 const HomeLayout = () => {
   return (
-    <div className='h-screen w-screen text-white flex items-center justify-center text-3xl bg-black '>Dashboard</div>
+    <>
+    <section>
+    <aside>
+    </aside>
+
+    <div>
+      <Outlet/>
+    </div>
+    </section>
+    </>
   )
 }
 

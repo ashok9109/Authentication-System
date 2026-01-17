@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
 import { loginApi } from '../../features/actions/authactions';
 import { useDispatch } from 'react-redux';
+import logo from '../../images/hd-logo.png'
 
 
 const Login = ({ setToggle }) => {
@@ -22,6 +23,11 @@ const Login = ({ setToggle }) => {
 
     return (
         <div className='h-screen w-full bg-black flex flex-col items-center justify-center' >
+
+            <div className='h-[60px] w-[190px] absolute top-5' >
+                <img src={logo} alt="company logo" />
+            </div>
+
             <div className='w-full max-w-2xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
 
                 {/* Login Form  */}

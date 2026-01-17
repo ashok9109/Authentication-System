@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import AuthLayout from '../Layouts/AuthLayout'
 import ProtectedRoute from '../components/auth/ProtectedRoute'
 import HomeLayout from '../Layouts/HomeLayout'
-import HomePage from '../pages/HomePage'
+import Dashboard from '../pages/Dashboard'
+import MyCourses from '../pages/MyCourses'
+import MyInternship from '../pages/MyInternship'
 
 
 const AppRouter = () => {
@@ -19,17 +21,25 @@ const AppRouter = () => {
                     path: '',
                     element: <HomeLayout />,
                     children: [
-                        {
-                            path: '',
-                            element: <HomePage />
-                        }
+                        // {
+                        //     path: '',
+                        //     element: <Dashboard/>
+                        // },
+                        // {
+                        //     path:'/mycoures',
+                        //     element:<MyCourses/>
+                        // },
+                        // {
+                        //     path:'/myinternship',
+                        //     element:<MyInternship/>
+                        // }
                     ]
                 }
             ]
         }
     ])
 
-    return <RouterProvider router={router}/>
+    return <RouterProvider router={router} />
 };
 
 export default AppRouter;
