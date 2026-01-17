@@ -1,8 +1,8 @@
-import { Album, BookCheck, Home, Icon, icons } from "lucide-react";
+import { Album, BookCheck, Home, Icon } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
-import { logoutApi } from '../../features/actions/authactions';
 import logo from '../../images/hd-logo.png';
+import { userLogoutApi } from "../../features/actions/authActions";
 
 
 // ===================
@@ -10,8 +10,8 @@ import logo from '../../images/hd-logo.png';
 // ===================
 const navlink = [
   { label: "Dashboard", icon: Home, to: "/home" },
-  { label: "My Courses", icons: BookCheck, to: "/home/my-courses" },
-  { label: "My Internship", icons: Album, to: "/home/my-internship" }
+  { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
+  { label: "My Internship", icon: Album, to: "/home/my-internship" }
 ]
 
 const NavLink = () => {
@@ -26,7 +26,7 @@ const NavLink = () => {
   // =============================
   const logouthandler = async () => {
     try {
-      const response = dispatch(logoutApi());
+      const response = dispatch(userLogoutApi());
       navigate("/")
       if (response) {
         console.log("user is logout")
@@ -36,14 +36,17 @@ const NavLink = () => {
     }
   }
 
-
   return (
     <>
+    {/* Navigation Section */}
       <section className=' p-10 flex flex-col items-center justify-center  ' >
+
+      {/* company logo */}
         <div className='h-[70px] w-[200px] mb-5' >
           <img src={logo} alt="company logo" />
         </div>
 
+        {/* Nav map */}
         <div className='flex flex-col items-center justify-center gap-10 text-2xl font-bold text-black' >
           {navlink.map(({ label, icon: Icon, to }, Idx) => {
             return (
@@ -52,7 +55,7 @@ const NavLink = () => {
                 to={to}
               >
                 <div className='flex' >
-                  {/* <Icon /> */}
+                  <Icon />
                   <span>{label}</span>
                 </div>
               </RouterNavLink>
@@ -60,6 +63,7 @@ const NavLink = () => {
           })}
         </div>
 
+          {/* logout button */}
         <div className="text-center mt-10" >
           <button onClick={logouthandler} className='text-red-500 text-3xl' >Logout</button>
         </div>

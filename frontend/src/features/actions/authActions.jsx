@@ -31,18 +31,16 @@ export const userLoginApi = (data) => async (dispatch) => {
     }
 };
 
-// =======================
-// Logout Api
+// ====================
+// User Logout Api
 // ====================
 
-export const logoutApi = () => async(dispatch)=>{
-
+export const userLogoutApi = () => async(dispatch)=>{
     try {
         const response = await axiosintance.get("/api/auth/logout")
         if(response){
             return response.data
         }
-        
     } catch (error) {
         throw error.response?.data  || error
     }
