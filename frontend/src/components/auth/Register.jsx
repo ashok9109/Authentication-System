@@ -23,19 +23,19 @@ const Register = ({ setToggle }) => {
     return (
         <div className='h-screen w-full bg-black flex items-center justify-center' >
 
-            <div className='h-[60px] w-[190px] absolute top-5' >
+            <div className='h-[90px] w-[260px] absolute top-5' >
                 <img src={logo} alt="company logo" />
             </div>
-            <div className='w-full max-w-2xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
+            <div className='w-full max-w-3xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
 
                 {/* Register Form  */}
                 <motion.div initial={{ x: -100 }} animate={{ x: 0 }}
                     className='w-full z-[99] bg-black border-r-2 border-[#102A43] ' >
-                    <form onSubmit={handleSubmit(onSubmit)} className='p-5' >
+                    <form onSubmit={handleSubmit(onSubmit)} className='p-5 space-y-4' >
                         <h1 className='text-sky-500 text-center font-semibold text-lg' >Create an Account</h1>
 
                         {/* Full Name */}
-                        <div className='flex flex-col px-5 py-1' >
+                        <div className='flex flex-col px-5 py-1 space-y-1' >
                             <label className='text-white text-sm' >Full Name</label>
                             <input
                                 {...register("fullName", {
