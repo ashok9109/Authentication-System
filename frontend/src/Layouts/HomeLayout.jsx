@@ -5,15 +5,15 @@ import NavLink from '../components/Navigation/NavLink';
 const HomeLayout = () => {
   return (
     <>
-      <section>
+      <section className='h-screen w-screen flex' >
         {/* Nav link */}
-        <aside>
+        <aside className='w-[30%] bg-[#102A43]' >
           <NavLink />
         </aside>
 
 
         {/* This is right page */}
-        <div>
+        <div className='w-full' >
           <Outlet />
         </div>
       </section>

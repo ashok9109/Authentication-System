@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
-import { loginApi } from '../../features/actions/authactions';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png'
+import { userLoginApi } from '../../features/actions/authactions';
 
 
 const Login = ({ setToggle }) => {
@@ -10,9 +10,12 @@ const Login = ({ setToggle }) => {
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    // ========================
+    // Login page onsbmit
+    // ========================
     const onSubmit = async (data) => {
         try {
-            const response = await dispatch(loginApi(data));
+            const response = await dispatch(userLoginApi(data));
             if (response) {
                 console.log('user is login');
             }
@@ -22,9 +25,9 @@ const Login = ({ setToggle }) => {
     }
 
     return (
-        <div className='h-screen w-full bg-black flex flex-col items-center justify-center' >
+        <div className='min-h-screen w-full bg-black flex flex-col items-center justify-center' >
 
-            <div className='h-[90px] w-[260px] absolute top-5' >
+            <div className='h-[90px] w-[260px] absolute top-2' >
                 <img src={logo} alt="company logo" />
             </div>
 
@@ -33,7 +36,7 @@ const Login = ({ setToggle }) => {
                 {/* Login Form  */}
                 <motion.div initial={{ x: -100 }} animate={{ x: 0 }}
                     className='w-full z-[99] bg-black ' >
-                    <form onSubmit={handleSubmit(onSubmit)} className='px-14 py-15 space-y-6 border-r-2 border-[#102A43]' >
+                    <form onSubmit={handleSubmit(onSubmit)} className='px-14 py-15 space-y-4 border-r-2 border-[#102A43]' >
                         <h1 className='text-sky-500 text-center font-semibold text-lg' >Login </h1>
 
                         {/* email */}

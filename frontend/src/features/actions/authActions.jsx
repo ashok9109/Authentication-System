@@ -2,10 +2,10 @@ import { axiosintance } from "../../config/axiosintance"
 import { addUser } from "../reducers/authSlice";
 
 // =======================
-// Register Api
+// User Register Api
 // =======================
 
-export const registerApi = (data) => async (dispatch) => {
+export const userRegisterApi = (data) => async (dispatch) => {
     try {
         const response = await axiosintance.post("/api/auth/register", data);
         if (response) {
@@ -17,10 +17,10 @@ export const registerApi = (data) => async (dispatch) => {
 };
 
 // =========================
-// Login Api
+// User Login Api
 //==========================
 
-export const loginApi = (data) => async (dispatch) => {
+export const userLoginApi = (data) => async (dispatch) => {
     try {
         const response = await axiosintance.post("/api/auth/login", data);
         if (response) {
@@ -38,9 +38,12 @@ export const loginApi = (data) => async (dispatch) => {
 export const logoutApi = () => async(dispatch)=>{
 
     try {
-        const response = await axiosintance.get("/api/")
+        const response = await axiosintance.get("/api/auth/logout")
+        if(response){
+            return response.data
+        }
         
     } catch (error) {
-        throw 
+        throw error.response?.data  || error
     }
 }

@@ -1,17 +1,20 @@
 import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
-import { registerApi } from '../../features/actions/authactions';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
+import { userRegisterApi } from '../../features/actions/authactions';
 
 const Register = ({ setToggle }) => {
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+// ========================
+// Register page onsbmit
+// ========================
     const onSubmit = async (data) => {
         try {
-            const response = await dispatch(registerApi(data));
+            const response = await dispatch(userRegisterApi(data));
             if (response) {
                 console.log("user is resgister");
             }
@@ -23,7 +26,7 @@ const Register = ({ setToggle }) => {
     return (
         <div className='h-screen w-full bg-black flex items-center justify-center' >
 
-            <div className='h-[90px] w-[260px] absolute top-5' >
+            <div className='h-[90px] w-[260px] absolute top-2' >
                 <img src={logo} alt="company logo" />
             </div>
             <div className='w-full max-w-3xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
