@@ -1,9 +1,10 @@
-import { Album, BookCheck, Home, Icon } from "lucide-react";
+import { Album, BookCheck, Home} from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
+import { toast } from "react-toastify";
 
 
 // ===================
@@ -27,6 +28,12 @@ const NavLink = () => {
   const logouthandler = async () => {
     try {
       const response = await axiosintance.get("/api/auth/logout");
+      toast.success("Logout Successfully", {
+        style: {
+          color: "#FFFFFF",
+          background: "#0F172B"
+        }
+      });
       navigate("/")
       if (response) {
         console.log("user is logout")
@@ -48,7 +55,7 @@ const NavLink = () => {
         </div>
 
         {/* Nav map */}
-        <div className='flex flex-col items-start justify-center gap-10 text-xl font-bold text-[#05AFF1]' >
+        <div className='flex flex-col items-start justify-center gap-10 text-xl font-bold' >
           {navlink.map(({ label, icon: Icon, to }, Idx) => {
             return (
               <RouterNavLink
@@ -56,8 +63,8 @@ const NavLink = () => {
                 to={to}
               >
                 <div className='flex gap-2' >
-                  <Icon />
-                  <span>{label}</span>
+                  <Icon className="text-[#424242]" />
+                  <span className="text-[#05AFF1]" >{label}</span>
                 </div>
               </RouterNavLink>
             )
@@ -65,8 +72,8 @@ const NavLink = () => {
         </div>
 
         {/* logout button */}
-        <div className="text-center mt-10" >
-          <button onClick={logouthandler} className='text-red-500 text-2xl' >Logout</button>
+        <div className="text-center mt-5" >
+          <button onClick={logouthandler} className='text-[#424242] font-bold text-2xl' >Logout</button>
         </div>
       </section>
     </>

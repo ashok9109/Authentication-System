@@ -3,23 +3,30 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
 import { userRegisterApi } from '../../features/actions/authactions';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const Register = ({ setToggle }) => {
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
 
-// ========================
-// Register page onsbmit
-// ========================
+    // ========================
+    // Register page onsbmit
+    // ========================
     const onSubmit = async (data) => {
+        setLoading(true);
         try {
             const response = await dispatch(userRegisterApi(data));
             if (response) {
+                toast.success("Register Successfully", { theme: "dark" })
                 console.log("user is resgister");
             }
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -97,7 +104,9 @@ const Register = ({ setToggle }) => {
                             )}
                         </div>
 
-                        <button type='submit' className='text-black bg-[#102A43] text-sm font-bold px-4 py-2 rounded' >Sign up</button>
+                        <button disabled={loading} type='submit'
+                            className='text-black bg-[#102A43] text-sm font-bold px-4 py-2 rounded hover:scale-[1.1] transition '
+                        >{loading ? "...creating account" : "sign up"}</button>
                     </form>
 
                     {/* mobile login page switch button */}
@@ -118,14 +127,14 @@ const Register = ({ setToggle }) => {
                         className='h-full w-full hidden md:block absolute top-0 right-0 bg-[#102A43] rounded z-[9]' ></motion.div>
                     <div className='text-white z-[99] '>
                         <motion.h1 initial={{ y: -100 }} animate={{ y: -10 }}
-                            className='text-black font-bold text-2xl text-center' >Welcome!</motion.h1>
+                            className='text-black font-bold text-2xl text-center hover:scale-[1.1] transition ' >Welcome!</motion.h1>
 
                         {/* Switch to Login page button */}
                         <motion.p initial={{ x: 100 }} animate={{ x: 0 }}
                         >Already an account?{" "}
                             <button
                                 onClick={() => setToggle((perv) => !perv)}
-                                type='button' className='text-sky-400 font-bold underline' >
+                                type='button' className='text-sky-400 font-bold underline hover:scale-[1.1] transition' >
                                 Login
                             </button>
                         </motion.p>

@@ -3,26 +3,38 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png'
 import { userLoginApi } from '../../features/actions/authactions';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 
 const Login = ({ setToggle }) => {
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
 
     // ========================
     // Login page onsbmit
     // ========================
     const onSubmit = async (data) => {
+        setLoading(true)
         try {
             const response = await dispatch(userLoginApi(data));
             if (response) {
+                toast.success("Login successfully", {
+                    style: {
+                        color: "#FFFFFF",
+                        background: "#0F172B"
+                    }
+                })
                 console.log('user is login');
             }
         } catch (error) {
             console.log(error)
-        }
-    }
+        }finally{
+            setLoading(false);
+        };
+    };
 
     return (
         <div className='min-h-screen w-full bg-black flex flex-col items-center justify-center' >
@@ -69,7 +81,9 @@ const Login = ({ setToggle }) => {
                             )}
                         </div>
 
-                        <button type='submit' className='text-black bg-[#102A43] scale[1.1] text-sm font-bold px-4 py-2 rounded' >Login</button>
+                        <button disabled={loading} type='submit' 
+                        className='text-black bg-[#102A43] scale[1.1] text-sm font-bold px-4 py-2 rounded hover:scale-[1.1] transition  ' 
+                        >{loading?"...Loading":"Login"}</button>
                     </form>
 
                     {/* mobile login page switch button */}
@@ -90,13 +104,13 @@ const Login = ({ setToggle }) => {
                         className='h-full w-full hidden md:block absolute top-0 right-0 bg-[#102A43] rounded z-[9]' ></motion.div>
                     <div className='text-white z-[99] '>
                         <motion.h1 initial={{ y: -100 }} animate={{ y: -10 }}
-                            className='text-black    font-bold text-2xl text-center' >Welcome!</motion.h1>
+                            className='text-black    font-bold text-2xl text-center' >Welcome! </motion.h1>
 
                         {/* Switch to Login page button */}
                         <motion.p initial={{ x: 100 }} animate={{ x: 0 }}
                         >Already an account?{" "}
                             <button onClick={() => setToggle((perv) => !perv)}
-                                type='button' className='text-sky-500 font-bold underline' >
+                                type='button' className='text-sky-500 font-bold underline hover:scale-[1.1] transition ' >
                                 Sign up
                             </button>
                         </motion.p>
