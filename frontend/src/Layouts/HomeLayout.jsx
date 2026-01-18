@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet } from 'react-router';
 import NavLink from '../components/Navigation/NavLink';
 
@@ -7,7 +6,7 @@ const HomeLayout = () => {
     <>
       <section className='h-screen w-screen flex' >
         {/* Nav link */}
-        <aside className='w-[30%] bg-[#102A43]' >
+        <aside className='w-[25%] bg-slate-900 ' >
           <NavLink />
         </aside>
 

@@ -2,7 +2,6 @@ import { Album, BookCheck, Home, Icon } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
-import { userLogoutApi } from "../../features/actions/authactions";
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
 
@@ -40,23 +39,23 @@ const NavLink = () => {
 
   return (
     <>
-    {/* Navigation Section */}
-      <section className=' p-10 flex flex-col items-center justify-center  ' >
+      {/* Navigation Section */}
+      <section className='h-full w-full p-10 flex flex-col items-center space-y-5 ' >
 
-      {/* company logo */}
+        {/* company logo */}
         <div className='h-[70px] w-[200px] mb-5' >
           <img src={logo} alt="company logo" />
         </div>
 
         {/* Nav map */}
-        <div className='flex flex-col items-center justify-center gap-10 text-2xl font-bold text-black' >
+        <div className='flex flex-col items-start justify-center gap-10 text-xl font-bold text-[#05AFF1]' >
           {navlink.map(({ label, icon: Icon, to }, Idx) => {
             return (
               <RouterNavLink
                 key={label}
                 to={to}
               >
-                <div className='flex' >
+                <div className='flex gap-2' >
                   <Icon />
                   <span>{label}</span>
                 </div>
@@ -65,9 +64,9 @@ const NavLink = () => {
           })}
         </div>
 
-          {/* logout button */}
+        {/* logout button */}
         <div className="text-center mt-10" >
-          <button onClick={logouthandler} className='text-red-500 text-3xl' >Logout</button>
+          <button onClick={logouthandler} className='text-red-500 text-2xl' >Logout</button>
         </div>
       </section>
     </>
