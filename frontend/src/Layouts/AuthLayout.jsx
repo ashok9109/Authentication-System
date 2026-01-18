@@ -8,7 +8,6 @@ const AuthLayout = () => {
 
   const navigate = useNavigate();
   const { user, isLoggedIn } = useSelector((state) => state.auth);
-  console.log("this the user", user);
 
   useEffect(()=>{
     if(user !== null && isLoggedIn ){
