@@ -24,7 +24,13 @@ const Register = ({ setToggle }) => {
                 console.log("user is resgister");
             }
         } catch (error) {
-            console.log(error)
+            console.log("This is error for sign up", error);
+            toast.error(error.response?.message || "Register Failed", {
+                style: {
+                    background: "#000000",
+                    color: "#FFFFFF",
+                }
+            });
         } finally {
             setLoading(false);
         }
@@ -34,7 +40,7 @@ const Register = ({ setToggle }) => {
         <div className='h-screen w-full bg-black flex items-center justify-center' >
 
             <div className='h-[90px] w-[260px] absolute top-2' >
-                <img src={logo} alt="company logo" />
+                <img className='hover:scale-[1.1] transition' src={logo} alt="company logo" />
             </div>
             <div className='w-full max-w-3xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
 
@@ -46,13 +52,14 @@ const Register = ({ setToggle }) => {
 
                         {/* Full Name */}
                         <div className='flex flex-col px-5 py-1 space-y-1' >
-                            <label className='text-white text-sm' >Full Name</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' for="fullName" >Full Name</label>
                             <input
                                 {...register("fullName", {
                                     required: "Full name is required",
                                     minLength: { value: 3, message: "Atleat 3 charater is required" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.fullName ? "border-red-500" : "border-white"}`}
+                                id='fullName'
                                 type="text" />
                             {errors.fullName && (
                                 <p className='text-red-500 text-[10px]' >{errors.fullName.message}</p>
@@ -61,13 +68,14 @@ const Register = ({ setToggle }) => {
 
                         {/* mobile */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm' >Mobile</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' for="mobile" >Mobile</label>
                             <input
                                 {...register("mobile", {
                                     required: "Mobile number is required",
                                     pattern: { value: /^[0-9]{10}$/, message: "10 digit are required" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.mobile ? "border-red-500 " : "border-white"}`}
+                                id='mobile'
                                 type="tel" />
                             {errors.mobile && (
                                 <span className='text-red-500 text-[10px]' >{errors.mobile.message}</span>
@@ -76,13 +84,14 @@ const Register = ({ setToggle }) => {
 
                         {/* email */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm' >Email</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' for="email" >Email</label>
                             <input
                                 {...register("email", {
                                     required: "Email is required",
                                     pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.email ? "border-red-500" : "border-white"}`}
+                                id='email'
                                 type="email" />
                             {errors.email && (
                                 <span className='text-red-500 text-[10px]' >{errors.email.message}</span>
@@ -91,13 +100,14 @@ const Register = ({ setToggle }) => {
 
                         {/* password */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm' >Password</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' for="password" >Password</label>
                             <input
                                 {...register("password", {
                                     required: "Password is required",
                                     minLength: { value: 8, message: "Atleat 8 correct is required" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.password ? "border-red-500" : "border-white"}`}
+                                id='password'
                                 type="password" />
                             {errors.password && (
                                 <span className='text-red-500 text-[10px]' >{errors.password.message}</span>
@@ -105,7 +115,7 @@ const Register = ({ setToggle }) => {
                         </div>
 
                         <button disabled={loading} type='submit'
-                            className='text-black bg-[#102A43] text-sm font-bold px-4 py-2 rounded hover:scale-[1.1] transition '
+                            className='text-black bg-[#102A43] text-sm font-bold px-4 py-2 rounded hover:bg-sky-500 hover:scale-[1.1] transition '
                         >{loading ? "...creating account" : "sign up"}</button>
                     </form>
 
