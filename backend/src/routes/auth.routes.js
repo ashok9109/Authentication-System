@@ -4,12 +4,18 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
+// ===================================
+// fetching the current user
+// ================================
+
 router.get("/me", authMiddleware, (req, res) => {
+
     return res.status(200).json({
         message:"user is logged in",
         user:req.user
+    
     })
-})
+});
 
 
 // =========================

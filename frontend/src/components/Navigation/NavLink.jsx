@@ -2,7 +2,9 @@ import { Album, BookCheck, Home, Icon } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
-import { userLogoutApi } from "../../features/actions/authActions";
+import { userLogoutApi } from "../../features/actions/authactions";
+import { removeUser } from "../../features/reducers/authSlice";
+import { axiosintance } from "../../config/axiosintance";
 
 
 // ===================
@@ -20,16 +22,16 @@ const NavLink = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-
   // ============================
   // Logout handler for logout
   // =============================
   const logouthandler = async () => {
     try {
-      const response = dispatch(userLogoutApi());
+      const response = await axiosintance.get("/api/auth/logout");
       navigate("/")
       if (response) {
         console.log("user is logout")
+        dispatch(removeUser());
       }
     } catch (error) {
       throw error.response?.data || error
